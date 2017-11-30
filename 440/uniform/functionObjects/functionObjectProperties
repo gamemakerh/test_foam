@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "440/uniform/functionObjects";
+    object      functionObjectProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+cuttingPlane
+{
+    p
+    {
+        file            "/home/localadmin/test_foam/postProcessing/cuttingPlane/440/p_yNormal.vtk";
+    }
+    U
+    {
+        file            "/home/localadmin/test_foam/postProcessing/cuttingPlane/440/U_yNormal.vtk";
+    }
+}
+
+streamLines
+{
+    p
+    {
+        file            "/home/localadmin/test_foam/postProcessing/sets/streamLines/440/track0_p.vtk";
+    }
+    U
+    {
+        file            "/home/localadmin/test_foam/postProcessing/sets/streamLines/440/track0_U.vtk";
+    }
+}
+
+
+// ************************************************************************* //
