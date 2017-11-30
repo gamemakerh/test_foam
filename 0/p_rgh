@@ -1,0 +1,82 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/* Butterfly 0.0.4                https://github.com/ladybug-tools/butterfly *\
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+	version		4.0;
+	format		ascii;
+	class		volScalarField;
+	location	"0";
+	object		p_rgh;
+}
+
+dimensions		[0 2 -2 0 0 0 0];
+
+internalField		uniform 0;
+
+boundaryField
+{
+
+    Symmetry
+    {
+
+        type		fixedFluxPressure;
+
+        value		uniform 0;
+
+        rho		rhok;
+
+    }
+
+    Duct_Wall
+    {
+
+        type		fixedFluxPressure;
+
+        value		uniform 0;
+
+        rho		rhok;
+
+    }
+
+    Walls
+    {
+
+        type		fixedFluxPressure;
+
+        value		uniform 0;
+
+        rho		rhok;
+
+    }
+
+    outlet
+    {
+
+        type		fixedValue;
+
+        value		uniform 0;
+
+    }
+
+    boundingbox_empty
+    {
+
+        type		empty;
+
+    }
+
+    Hole_Inlet_1200
+    {
+
+        type		zeroGradient;
+
+    }
+
+}

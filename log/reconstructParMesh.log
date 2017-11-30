@@ -1,0 +1,113 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : v1706
+Arch   : "LSB;label=32;scalar=64"
+Exec   : reconstructParMesh -constant
+Date   : Nov 30 2017
+Time   : 10:20:19
+Host   : "default"
+PID    : 12224
+Case   : /home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+This is an experimental tool which tries to merge individual processor
+meshes back into one master mesh. Use it if the original master mesh has
+been deleted or if the processor meshes have been modified (topology change).
+This tool will write the resulting mesh to a new time step and construct
+xxxxProcAddressing files in the processor meshes so reconstructPar can be
+used to regenerate the fields on the master mesh.
+
+Not well tested & use at your own risk!
+
+Merge tolerance : 1e-07
+Write tolerance : 1e-07
+Doing geometric matching on correct procBoundaries only.
+This assumes a correct decomposition.
+Found 2 processor directories
+
+Reading database "Duct_Simulation430oclock_9/processor0"
+Reading database "Duct_Simulation430oclock_9/processor1"
+Time = constant
+
+Reading points from "Duct_Simulation430oclock_9/processor0" for time = constant
+
+Reading points from "Duct_Simulation430oclock_9/processor1" for time = constant
+
+Overall mesh bounding box  : (-11.5138 -10.2438 0.45) (9.9888 3.4818 0.55)
+Relative tolerance         : 1e-07
+Absolute matching distance : 2.551007e-06
+
+Merging mesh 0 with 1
+Reading mesh to add from "Duct_Simulation430oclock_9/processor0" for time = constant
+
+
+Reading mesh to add from "Duct_Simulation430oclock_9/processor1" for time = constant
+
+
+mergeSharedPoints : detected 0 points that are to be merged.
+
+Writing merged mesh to "/home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9/constant"
+
+Reconstructing the addressing from the processor meshes to the newly reconstructed mesh
+
+Reading processor 0 mesh from "Duct_Simulation430oclock_9/processor0"
+Writing pointProcAddressing to "Duct_Simulation430oclock_9/processor0/constant/polyMesh"
+Writing faceProcAddressing to "Duct_Simulation430oclock_9/processor0/constant/polyMesh"
+Writing cellProcAddressing to "Duct_Simulation430oclock_9/processor0/constant/polyMesh"
+Writing boundaryProcAddressing to "Duct_Simulation430oclock_9/processor0/constant/polyMesh"
+
+Reading processor 1 mesh from "Duct_Simulation430oclock_9/processor1"
+Writing pointProcAddressing to "Duct_Simulation430oclock_9/processor1/constant/polyMesh"
+Writing faceProcAddressing to "Duct_Simulation430oclock_9/processor1/constant/polyMesh"
+Writing cellProcAddressing to "Duct_Simulation430oclock_9/processor1/constant/polyMesh"
+Writing boundaryProcAddressing to "Duct_Simulation430oclock_9/processor1/constant/polyMesh"
+
+Time = 1
+
+Reading points from "Duct_Simulation430oclock_9/processor0" for time = 1
+
+Reading points from "Duct_Simulation430oclock_9/processor1" for time = 1
+
+Overall mesh bounding box  : (-8.489997 -8.472755 0.45) (6.853004 1.710755 0.55)
+Relative tolerance         : 1e-07
+Absolute matching distance : 1.841525e-06
+
+Merging mesh 0 with 1
+Reading mesh to add from "Duct_Simulation430oclock_9/processor0" for time = 1
+
+
+Reading mesh to add from "Duct_Simulation430oclock_9/processor1" for time = 1
+
+
+mergeSharedPoints : detected 0 points that are to be merged.
+
+Writing merged mesh to "/home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9/1"
+
+Reconstructing the addressing from the processor meshes to the newly reconstructed mesh
+
+Reading processor 0 mesh from "Duct_Simulation430oclock_9/processor0"
+Writing pointProcAddressing to "Duct_Simulation430oclock_9/processor0/1/polyMesh"
+Writing faceProcAddressing to "Duct_Simulation430oclock_9/processor0/1/polyMesh"
+Writing cellProcAddressing to "Duct_Simulation430oclock_9/processor0/1/polyMesh"
+Writing boundaryProcAddressing to "Duct_Simulation430oclock_9/processor0/1/polyMesh"
+
+Reading processor 1 mesh from "Duct_Simulation430oclock_9/processor1"
+Writing pointProcAddressing to "Duct_Simulation430oclock_9/processor1/1/polyMesh"
+Writing faceProcAddressing to "Duct_Simulation430oclock_9/processor1/1/polyMesh"
+Writing cellProcAddressing to "Duct_Simulation430oclock_9/processor1/1/polyMesh"
+Writing boundaryProcAddressing to "Duct_Simulation430oclock_9/processor1/1/polyMesh"
+
+
+End
+

@@ -1,0 +1,75 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : v1706
+Arch   : "LSB;label=32;scalar=64"
+Exec   : blockMesh
+Date   : Nov 30 2017
+Time   : 11:04:56
+Host   : "default"
+PID    : 14088
+Case   : /home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Deleting polyMesh directory
+    "/home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9/constant/polyMesh"
+Creating block mesh from
+    "/home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9/system/blockMeshDict"
+Creating block edges
+No non-planar block faces defined
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+    Block 0 cell size :
+        i : 0.4479708 .. 0.4479708
+        j : 0.4427613 .. 0.4427613
+        k : 0.1 .. 0.1
+
+
+There are no merge patch pairs edges
+
+Writing polyMesh with 0 cellZones
+----------------
+Mesh Information
+----------------
+  boundingBox: (-11.5138 -10.2438 0.45) (9.9888 3.4818 0.55)
+  nPoints: 3136
+  nCells: 1488
+  nFaces: 6031
+  nInternalFaces: 2897
+----------------
+Patches
+----------------
+  patch 0 (start: 2897 size: 158) name: boundingbox
+  patch 1 (start: 3055 size: 2976) name: boundingbox_empty
+
+End
+

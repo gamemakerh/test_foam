@@ -1,0 +1,2 @@
+buoyantBoussinesqSimpleFoam: symbol lookup error: /opt/OpenFOAM/ThirdParty-v1706/platforms/linux64Gcc/VTK-8.1.0/lib/libvtkCommonDataModel-8.1.so.1: undefined symbol: _ZN49vtkInformationQuadratureSchemeDefinitionVectorKeyD1Ev
+buoyantBoussinesqSimpleFoam: symbol lookup error: /opt/OpenFOAM/ThirdParty-v1706/platforms/linux64Gcc/VTK-8.1.0/lib/libvtkCommonDataModel-8.1.so.1: undefined symbol: _ZN49vtkInformationQuadratureSchemeDefinitionVectorKeyD1Ev

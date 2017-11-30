@@ -1,0 +1,91 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : v1706
+Arch   : "LSB;label=32;scalar=64"
+Exec   : checkMesh -latestTime
+Date   : Nov 26 2017
+Time   : 14:52:56
+Host   : "default"
+PID    : 5307
+Case   : /home/ofuser/workingDir/butterfly/Duct_Simulation430oclock_9
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Time = 0
+
+Mesh stats
+    points:           38654
+    faces:            94541
+    internal faces:   83720
+    cells:            28117
+    faces per cell:   6.339972
+    boundary patches: 5
+    point zones:      0
+    face zones:       0
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     22511
+    prisms:        1479
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     4127
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            6   1038
+            7   193
+            9   2177
+           12   719
+
+Checking topology...
+    Boundary definition OK.
+ ***Total number of faces on empty patches is not divisible by the number of cells in the mesh. Hence this mesh is not 1D or 2D.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces...
+                   Patch    Faces   Points                  Surface topology
+       boundingbox_empty     3296     3792  ok (non-closed singly connected)
+                   Walls      137      259  ok (non-closed singly connected)
+                  outlet       60       80  ok (non-closed singly connected)
+               Duct_Wall     4640     4990  ok (non-closed singly connected)
+         Hole_Inlet_1200     2688     2838  ok (non-closed singly connected)
+
+Checking geometry...
+    Overall domain bounding box (-8.442 -8.283 0.45) (6.917 1.521 0.55)
+    Mesh has 2 geometric (non-empty/wedge) directions (1 1 0)
+    Mesh has 2 solution (non-empty) directions (1 1 0)
+ ***Number of edges not aligned with or perpendicular to non-empty directions: 25596
+  <<Writing 32176 points on non-aligned edges to set nonAlignedEdges
+    Boundary openness (2.435379e-19 5.512807e-19 1.01881e-16) OK.
+    Max cell openness = 2.589239e-16 OK.
+    Max aspect ratio = 3.019055 OK.
+    Minimum face area = 2.112219e-06. Maximum face area = 0.2192811.  Face area magnitudes OK.
+    Min volume = 7.28377e-09. Max volume = 0.02192794.  Total volume = 15.00332.  Cell volumes OK.
+    Mesh non-orthogonality Max: 34.92798 average: 8.288679
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 0.8280655 OK.
+    Coupled point location match (average 0) OK.
+
+Failed 1 mesh checks.
+
+End
+

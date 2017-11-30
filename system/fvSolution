@@ -1,0 +1,150 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/* Butterfly 0.0.4                https://github.com/ladybug-tools/butterfly *\
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+	version		4.0;
+	format		ascii;
+	class		dictionary;
+	location	"system";
+	object		fvSolution;
+}
+
+solvers
+{
+
+    U
+    {
+
+        relTol		0.1;
+
+        tolerance		1e-8;
+
+        nSweeps		1;
+
+        smoother		GaussSeidel;
+
+        solver		smoothSolver;
+
+    }
+
+    k
+    {
+
+        relTol		0.1;
+
+        tolerance		1e-8;
+
+        nSweeps		1;
+
+        smoother		GaussSeidel;
+
+        solver		smoothSolver;
+
+    }
+
+    epsilon
+    {
+
+        relTol		0.1;
+
+        tolerance		1e-8;
+
+        nSweeps		1;
+
+        smoother		GaussSeidel;
+
+        solver		smoothSolver;
+
+    }
+
+    p_rgh
+    {
+
+        agglomerator		faceAreaPair;
+
+        relTol		0.001;
+
+        tolerance		1e-8;
+
+        nCellsInCoarsestLevel		422;
+
+        smoother		GaussSeidel;
+
+        solver		GAMG;
+
+        cacheAgglomeration		true;
+
+        preconditioner		DIC;
+
+        mergeLevels		1;
+
+    }
+
+    T
+    {
+
+        relTol		0.1;
+
+        tolerance		1e-8;
+
+        nSweeps		1;
+
+        smoother		GaussSeidel;
+
+        solver		smoothSolver;
+
+    }
+
+}
+
+SIMPLE
+{
+
+    nNonOrthogonalCorrectors		2;
+
+    residualControl
+    {
+
+        nut		0.001;
+
+        p_rgh		0.01;
+
+        k		0.01;
+
+        U		0.001;
+
+        T		0.001;
+
+        epsilon		0.001;
+
+        alphat		0.001;
+
+    }
+
+    pRefValue		0;
+
+    pRefPoint		(-4.4752222222222215 1.014 0.5);
+
+}
+
+relaxationFactors
+{
+
+    p_rgh		0.7;
+
+    k		0.7;
+
+    U		0.3;
+
+    T		0.5;
+
+    epsilon		0.7;
+
+}

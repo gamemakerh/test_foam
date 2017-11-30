@@ -1,0 +1,215 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/* Butterfly 0.0.4                https://github.com/ladybug-tools/butterfly *\
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+	version		4.0;
+	format		ascii;
+	class		dictionary;
+	location	"system";
+	object		controlDict;
+}
+
+#include		"probes";
+
+application		buoyantBoussinesqSimpleFoam;
+
+startFrom		latestTime;
+
+startTime		0;
+
+stopAt		endTime;
+
+endTime		10000;
+
+deltaT		1;
+
+writeControl		timeStep;
+
+writeInterval		1000;
+
+purgeWrite		0;
+
+writeFormat		ascii;
+
+writePrecision		7;
+
+writeCompression		off;
+
+timeFormat		general;
+
+timePrecision		6;
+
+runTimeModifiable		true;
+
+functions
+{
+//	#include "cuttingPlane"
+ //   #include "streamLines"
+  //  #include "forceCoeffs"  // nereikai sito sitam case
+ //   #include "runtimePostProcessing"
+ 
+ cuttingPlane
+{
+    type            surfaces;    //jei enveikai tada pakeisti atgal i surfaces. jei veikai palikti i surface
+    libs            ("libsampling.so");
+    writeControl    onEnd; // writeTime; // buvo visada write time. db pakeiciau. viskas veikia
+	//writeInterval   100;
+    surfaceFormat   vtk;
+    fields          (p U);
+
+    interpolationScheme cellPoint;
+
+    surfaces
+    (
+        yNormal
+        {
+            type            cuttingPlane;
+            planeType       pointAndNormal;
+            pointAndNormalDict
+            {
+                point   (-0.7625002861022949 -3.380999982357025 0.5);
+                normal  (0 0 1);   // 0 0 1 
+            }
+            interpolate     true;
+        }
+    );
+}
+// ************************************************************************* //
+
+
+streamLines
+{
+    type            streamLine; 						// pakeisti i streamlines. jei neveikai palikti streamline
+	libs            ("libfieldFunctionObjects.so");		//	arba dar gali buti //	libOpenFOAM.so
+    writeControl    onEnd; //writeTime;  						// Output every // buvo visada write time. db pakeiciau. viskas veikia
+	//writeInterval 100;
+    setFormat       vtk; 								//gnuplot; //xmgr; //raw; //jplot; //csv; //ensight;
+    U               U;  								// Velocity field to use for tracking.
+    trackForward    true;  								// Tracked forwards (+U) or backwards (-U)
+    fields          (p U);  							// Names of fields to sample. Should contain above velocity field!
+    lifeTime        10000;  							// Steps particles can travel before being removed
+    nSubCycle       5;  								// Number of steps per cell (estimate). Set to 1 to disable subcycling.
+    cloud           particleTracks; 					// Cloud name to use
+    seedSampleSet  										// Seeding method.
+    {
+        type        uniform;
+        axis        x;  								//distance;
+        start       (-1.001 1e-7 0.0011);				// Note: tracks slightly offset so as not to be on a face
+        end         (-1.001 1e-7 1.0011);
+        nPoints     200;
+    }
+}
+// ************************************************************************* //
+
+
+postPro1
+{
+    type            runTimePostProcessing;
+    libs            ("librunTimePostProcessing.so");
+    writeControl   	onEnd; // writeTime; // buvo visada write time. db pakeiciau. viskas veikia
+    output
+    {
+        name            image;
+        width           1554;
+        height          853;
+    }
+    camera
+    {
+																					// If camera is moving, optionally provide start and end times
+																					// startPosition    0.2;
+																					// endPosition      0.75;
+
+																					// Total number of frames to generate
+        nFrameTotal         1;
+
+																					// Parallel projection flag
+        parallelProjection  no;
+
+        clipBox         (-5.9 1.8 0.5)(5.1 -8.5 0.5);						 // optional 		//  clipBox         (-9 2 0.5)(7.5 -8.5 0.5);	 // tipo geras tipo lievas
+
+        focalPoint      (-0.3352214945524962 -3.452300687073489 0.5);
+        up              (0 1 0);
+        position        (-0.3352214945524962 -3.452300687073489 20.370306316457867);
+    }
+																					// Default colours
+																					// - If select to colourBy colour, these values are used unless
+																					// they are locally overriden
+    colours
+    {
+        background      (0.81 0.87 1);
+       // background2     (0 0 1);
+        text            (0 0 0);
+        edge            (1 0 0);
+        surface         (0.5 0.5 0.5);
+        line            (1 0 0);
+    }
+																					// Line data
+    lines
+    {
+        streamline
+        {
+            type            functionObjectLine;
+            functionObject  streamLines;
+            representation  tube;
+            visible         yes;
+            tubeRadius      0.01;
+            colourBy        field;
+            field           U;
+            range           (0 14);
+            opacity         1;
+            scalarBar
+            {
+                visible         no;               
+            }
+        }
+    }
+																					// Surface data
+    surfaces
+    {
+        cuttingPlane1
+        {
+            type            functionObjectSurface;
+            functionObject  cuttingPlane;
+            colourMap       rainbow; 												// blueWhiteRed;
+            representation  surface; 												//glyph;   //maxGlyphLength  0.1;
+			edgeColour      (0 0 0);
+            visible         yes;
+            featureEdges    no;
+            colourBy        field;
+            field           U;
+            range           (0 14);
+            opacity         1;
+            scalarBar
+            {
+                visible         yes;
+                position        (0.875 0.12);
+                vertical        yes;
+                fontSize        10;
+                title           "Velocity / [m/s]";
+                labelFormat     "%6.2f";
+                numberOfLabels  10;
+            }
+        }
+    }
+																						// Text data
+    text
+    {
+        text1
+        {
+            string          "Air velocity distribution in the room";
+            position         (0.1 0.03); 												//(0.1 0.05);
+            size            20;
+            bold            yes;
+            visible         yes;
+        }
+    }
+}
+
+}
